@@ -1,0 +1,53 @@
+info:
+  contact:
+    email: yrisob@gmail.com
+    name: Соболев Юрий Андреевич
+    url: http://localhost:8100
+  description: Набор методов для получения логов
+  license:
+    name: Apache 2.0
+  termsOfService: http://swagger.io/terms/
+  title: API для просмотра логов по девелоперским системам
+  version: "1.0"
+paths:
+  /logs:
+    get:
+      consumes:
+      - application/json
+      description: получение логов системы
+      parameters:
+      - description: 'один из вариантов: ppas, ppas_ehed, ppas_notifier'
+        in: query
+        name: service
+        required: true
+        type: string
+      - description: 'один из вариантов: week, yesterday, hour, minutes'
+        in: query
+        name: since
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "405":
+          description: Method Not Allowed
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      tags:
+      - logs
+swagger: "2.0"
