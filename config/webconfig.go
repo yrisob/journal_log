@@ -14,6 +14,7 @@ type ServerConfig struct {
 	PPAS         string
 	PPASEHED     string
 	PPASNOTIFIER string
+	PPASUPDATER  string
 }
 
 var serverConfig *ServerConfig
@@ -46,12 +47,18 @@ func GetServerConfig() (*ServerConfig, error) {
 			return nil, fmt.Errorf("PATH for ppas_notifier is not defined")
 		}
 
+		ppasUpdater, ok := os.LookupEnv("PPAS_UPDATER")
+		if !ok {
+			return nil, fmt.Errorf("PATH for ppas_updater is not defined")
+		}
+
 		serverConfig = &ServerConfig{
 			Port:         port,
 			User:         user,
 			PPAS:         fmt.Sprintf(ppasPath, user),
 			PPASEHED:     fmt.Sprintf(ppasEhed, user),
 			PPASNOTIFIER: fmt.Sprintf(ppasNotifier, user),
+			PPASUPDATER:  fmt.Sprintf(ppasUpdater, user),
 		}
 	}
 	return serverConfig, nil
@@ -66,6 +73,8 @@ func (c *ServerConfig) GetPathByServiceType(serviceType dto.ServiceType) string 
 		return c.PPAS
 	case dto.PPAS_notifier:
 		return c.PPASNOTIFIER
+	case dto.PPAS_updater:
+		return c.PPASUPDATER
 	}
 	return ""
 }

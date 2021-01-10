@@ -30,7 +30,7 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "один из вариантов: ppas, ppas_ehed, ppas_notifier",
+                        "description": "один из вариантов: ppas, ppas_ehed, ppas_notifier, ppas_updater",
                         "name": "service",
                         "in": "query",
                         "required": true

@@ -15,7 +15,7 @@ type LogController struct {
 }
 
 // @Description получение логов системы
-// @Param service query string true "один из вариантов: ppas, ppas_ehed, ppas_notifier"
+// @Param service query string true "один из вариантов: ppas, ppas_ehed, ppas_notifier, ppas_updater"
 // @Param since query string false "один из вариантов: week, yesterday, hour, minutes"
 // @Tags logs
 // @Accept  json
@@ -29,7 +29,7 @@ type LogController struct {
 func (lc *LogController) GetLogs(c echo.Context) error {
 	service := c.QueryParam("service")
 	if !dto.IsNotServiceType(service) {
-		return c.String(http.StatusBadRequest, "service должен быть одним из вариантов: ppas, ppas_ehed, ppas_notifier")
+		return c.String(http.StatusBadRequest, "service должен быть одним из вариантов: ppas, ppas_ehed, ppas_notifier, ppas_updater")
 	}
 	since := c.QueryParam("since")
 

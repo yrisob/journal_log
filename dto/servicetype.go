@@ -6,6 +6,7 @@ const (
 	PPAS_service  ServiceType = "ppas"
 	PPAS_notifier ServiceType = "ppas_notifier"
 	PPAS_ehed     ServiceType = "ppas_ehed"
+	PPAS_updater  ServiceType = "ppas_updater"
 )
 
 type SinceTime = string
@@ -19,7 +20,7 @@ const (
 
 func IsNotServiceType(input string) bool {
 	switch input {
-	case PPAS_ehed, PPAS_notifier, PPAS_service:
+	case PPAS_ehed, PPAS_notifier, PPAS_service, PPAS_updater:
 		return true
 	}
 	return false
